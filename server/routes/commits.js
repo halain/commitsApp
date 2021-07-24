@@ -7,13 +7,13 @@ const { validateFields } = require('../middlewares/validate-fields');
 const router = Router();
 
 //Get Commits from github
-router.post('/', getCommits );
+router.post('/',[
+    check('userGithub', 'The userGithub is required').notEmpty(),
+    check('repository', 'The repository is required').notEmpty(),
+    validateFields,
+], getCommits );
 
-// [
-//     check('userGithub', 'The userGithub is required').notEmpty(),
-//     check('repository', 'The repository is required').notEmpty(),
-//     validateFields,
-// ],
+
 
 
 module.exports = router; 
