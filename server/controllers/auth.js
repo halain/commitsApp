@@ -52,6 +52,57 @@ const createUser = async (req = request, res = response) => {
 
 
 
+
+//Login user
+const loginUser = async (req = request, res = response) => {
+    
+    const { email, password } = req.body;
+
+    try {
+        //find user in DB by email
+        const userDB = await User.findOne( { email } );
+
+        if (!userDB) {
+            return res.status(400).json({
+                ok: false,
+                msg: 'Wrong credentials'
+            });
+        }
+
+        //validate password
+        const validPassword = bcrypt.compareSync( password, userDB.password);
+
+        if (!validPassword) {
+            return res.status(400).json({
+                ok: false,
+                msg: 'Wrong credentials'
+            });
+        }
+
+        // TODO: generate token
+        
+
+        //services response
+        res.json({
+            ok: true,
+            uid: userDB.id,
+            name: userDB.name,
+            email: userDB.email
+        });
+
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            ok: false,
+            msg: 'Login Server Error, contact the administrator' 
+        });    
+    }
+    
+};
+
+
+
 module.exports = {
-    createUser
+    createUser,
+    loginUser
 }
