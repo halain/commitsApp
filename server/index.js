@@ -1,12 +1,13 @@
 const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
+const { dbConnection } = require('./db/config');
 
 //Server express
 const app = express();
 
 //DB connection
-
+dbConnection();
 
 //Public for deploy angular app
 app.use( express.static('public'))
