@@ -1,6 +1,7 @@
 const { response, request } = require('express');
 const User = require('../models/User');
 const bcrypt = require('bcryptjs');
+const { generateJWT } = require('../helpers/jwt');
 
 
 
@@ -29,15 +30,16 @@ const createUser = async (req = request, res = response) => {
         //store user in DB
         await user.save();
 
-        // TODO: generate token
-       
+        //generate token
+        const token = await generateJWT(user.id, name);
 
         //services response
         return res.status(201).json({
             ok: true,
             uid: user.id,
             name,
-            email
+            email,
+            token
         });
          
     } catch (error) {
@@ -79,15 +81,16 @@ const loginUser = async (req = request, res = response) => {
             });
         }
 
-        // TODO: generate token
-        
+        //generate token
+        const token = await generateJWT(userDB.id, userDB.name);
 
         //services response
         res.json({
             ok: true,
             uid: userDB.id,
             name: userDB.name,
-            email: userDB.email
+            email: userDB.email,
+            token
         });
 
     } catch (error) {
@@ -102,7 +105,29 @@ const loginUser = async (req = request, res = response) => {
 
 
 
+//validate and token renew
+const renewToken = async (req = request, res = response) => {
+
+    const { uid } = req;
+
+    //get user
+    const userDB = await User.findById( uid );
+
+    //renew token
+    const newToken = await generateJWT(uid, userDB.name);
+
+    return res.json({
+        ok: true,
+        uid,
+        name: userDB.name,
+        email: userDB.email,
+        token: newToken
+    })
+};
+
+
 module.exports = {
     createUser,
-    loginUser
+    loginUser,
+    renewToken
 }
