@@ -11,7 +11,7 @@ import { SharedService } from '../../../shared/services/shared.service';
 })
 export class LoginComponent implements OnInit {
 
-  
+  loading: boolean = false;
   myForm: FormGroup = this.fb.group({
     email: ['user@test.com', [Validators.required, Validators.email]],
     password: ['password', [Validators.required, Validators.minLength(6)]]
@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit {
   login() {
 
     const {email, password} = this.myForm.value;
+    this.loading = true;
     this.authService.login(email, password)
       .subscribe( ok => {
         if (ok === true) {
@@ -34,8 +35,8 @@ export class LoginComponent implements OnInit {
         } else {
           this.notification.showMessage('error',ok);
         }
-        
-      });
+        this.loading = false;
+      }, err => {this.loading = false;});
   }
 
 

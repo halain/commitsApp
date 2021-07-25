@@ -15,10 +15,6 @@ Desde el directorio `server/` ejecutar `npm start`. Si desea ejecutar el servido
 
  Desde la raíz ejecutar `ng serve` para iniciar el servidor de desarrollo de angular. En el navegador abra `http://localhost:4200/`.
 
-
-
-
-
 ## Observaciones
 
 - Se implementó una autenticación con una base de datos en mongoDB para lo que se compartió el archivo .env, este acceso será eliminado en poco tiempo ya que esto es para este caso de demostración, en todo caso se puede cambiar la cadena de conexión por una propia.
