@@ -1,4 +1,4 @@
-<div fxLayoutAlign="center center" fxFlexFill class="wrapper">
+<div fxLayoutAlign="center center"  class="wrapper">
     <mat-card >
         
         <mat-card-header>
@@ -11,24 +11,39 @@
                 fxLayoutAlign="stretch" 
                 fxLayoutGap="20px" 
                 autocomplete="off" 
-                class="login-form">
+                class="login-form"
+                [formGroup]="myForm"
+                (ngSubmit)="register()">
 
             <mat-form-field>
               <mat-label>Name</mat-label>
-              <input matInput placeholder="Name" >
+              <input matInput 
+                    placeholder="Name" 
+                    formControlName="name">
             </mat-form-field>
 
             <mat-form-field>
                 <mat-label>Email</mat-label>
-                <input matInput placeholder="Email" >
+                <input matInput 
+                        placeholder="Email" 
+                        type="email" 
+                        formControlName="email">
             </mat-form-field>
           
             <mat-form-field>
                 <mat-label>Password</mat-label>
-                <input matInput type="password" placeholder="Password" >
+                <input matInput type="password" 
+                        placeholder="Password" 
+                        type="password"
+                        formControlName="password">
             </mat-form-field>
 
-              <button mat-raised-button type="submit" color="primary">Login</button>
+            <button mat-raised-button 
+                    type="submit" 
+                    color="primary"
+                    [disabled]="myForm.invalid">
+                    Login
+            </button>
         </form>
           
         <mat-card-actions fxLayout="column">
