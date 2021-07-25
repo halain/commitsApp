@@ -32,6 +32,8 @@ export class LoginComponent implements OnInit {
       .subscribe( ok => {
         if (ok === true) {
           this.router.navigate(['/commits']);
+        } else if ( ok === undefined ) {
+          this.notification.showMessage('error','Server offline, please run npm start in server');
         } else {
           this.notification.showMessage('error',ok);
         }
