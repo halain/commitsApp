@@ -1,8 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { isEmpty } from 'rxjs/operators';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { SharedService } from '../../../shared/services/shared.service';
-import { CommitService } from '../../services/commit.service';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatSort, SortDirection} from '@angular/material/sort';
+import {merge, Observable, of as observableOf} from 'rxjs';
+import {catchError, map, startWith, switchMap} from 'rxjs/operators';
 import { CommitGitHub } from '../../interfaces/commits.interfaces';
+import { CommitService } from '../../services/commit.service';
+
+
 
 
 @Component({
@@ -26,7 +31,11 @@ export class ListComponent implements OnInit {
     repository: ''
 }
 
-commits: CommitGitHub[] = [];
+
+displayedColumns: string[] = ['avatar_url', 'author', 'message', 'html_url','date', 'email' ];
+dataSource: CommitGitHub[] = [];
+
+
 
   constructor(private notification: SharedService,
               private commitServices: CommitService) { }
@@ -43,7 +52,7 @@ commits: CommitGitHub[] = [];
     this.commitServices.listCommits(this.commit.userGithub, this.commit.repository)
     .subscribe( commit => {
       console.log(commit);
-      this.commits = commit;
+      this.dataSource = commit;
       
     });
     

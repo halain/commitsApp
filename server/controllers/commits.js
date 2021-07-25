@@ -24,7 +24,7 @@ const getCommits = async (req = request, res = response) => {
             email:      data.commit.author.email,
             date:       data.commit.author.date,
             message:    data.commit.message,
-            html_url:   data.commit.html_url,
+            html_url:   data.html_url,
             avatar_url: data.author.avatar_url
         }) );
 

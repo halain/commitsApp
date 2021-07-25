@@ -9,4 +9,5 @@ export interface CommitGitHub {
     date: string
     message: string,
     avatar_url: string,
+    html_url: string,
 }
