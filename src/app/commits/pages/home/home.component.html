@@ -1,12 +1,45 @@
-<h1>HOME</h1>
-<hr>
-<p>
-    Esta pagina solo funciona si estas autenticado
-</p>
+<mat-sidenav-container fullscreen>
+    
+    <mat-sidenav #sidenav>
+        <mat-toolbar color="primary">
+            <span>Menú</span>
+            <span fxFlex></span>
+            <button mat-icon-button
+                (click)="sidenav.toggle()">
+                <mat-icon>menu</mat-icon>
+            </button>
+        </mat-toolbar>    
+        <mat-nav-list>
+            <a routerLink="./list"
+                mat-list-item
+                (click)="sidenav.toggle()">
+                <mat-icon mat-list-icon>list</mat-icon>
+                <span>Commits</span>
+            </a>
+            <a routerLink="./buscar"
+                mat-list-item
+                (click)="sidenav.toggle()">
+                <mat-icon mat-list-icon>logout</mat-icon>
+                <span>Logout</span>
+            </a>
+        </mat-nav-list>
+    </mat-sidenav>
 
-<h4>DATA COMMITS</h4>
+    <mat-toolbar color="primary">
+        <button mat-icon-button
+            (click)="sidenav.toggle()">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <span class="spacer"></span>
+        <!-- <span>{{ auth.usuario }}</span> -->
+        <button mat-button
+                (click)="logout()">
+            Logout
+        </button>
+    </mat-toolbar>
 
+    <div class="container">
+        <router-outlet></router-outlet>
+    </div>
 
-<button >
-    Logout
-</button>
+</mat-sidenav-container>

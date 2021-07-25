@@ -1,1 +1,36 @@
-<p>login works!</p>
+<div fxLayoutAlign="center center" fxFlexFill class="wrapper">
+    <mat-card>
+
+        <mat-card-header>    
+            <mat-card-title><h1>Login</h1></mat-card-title>           
+        </mat-card-header>
+        
+        <mat-divider></mat-divider>
+        
+        <form fxLayout="column" 
+                fxLayoutAlign="stretch" 
+                fxLayoutGap="20px"  
+                autocomplete="off" 
+                class="login-form">
+            
+            <mat-form-field>
+              <mat-label>Email</mat-label>
+              <input matInput placeholder="Email" >
+            </mat-form-field>
+          
+            <mat-form-field>
+                <mat-label>Password</mat-label>
+                <input matInput type="password" placeholder="Password" >
+            </mat-form-field>
+            
+            <button mat-raised-button type="submit" color="primary">Login</button>
+          
+        </form>
+          
+        <mat-card-actions fxLayout="column">
+            <p fxLayoutAlign="center">¿No tienes cuenta?</p>
+            <button  mat-stroked-button [routerLink]="['/auth/register']">Crea una aquí</button>
+        </mat-card-actions>
+
+    </mat-card>
+</div>
