@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 import { MaterialModule } from '../material/material.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 import { CommitsRoutingModule } from './commits-routing.module';
@@ -16,6 +18,8 @@ import { ListComponent } from './pages/list/list.component';
   ],
   imports: [
     CommonModule,
+    FlexLayoutModule,
+    FormsModule,
     CommitsRoutingModule,
     MaterialModule,
   ]

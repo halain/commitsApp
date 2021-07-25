@@ -1,1 +1,42 @@
-<p>list works!</p>
+
+
+<mat-card >
+
+    <div  fxLayout.xs="column"
+        fxLayoutGap="20px">
+
+    <h1>Seleccione para consultar los Commits de GitHub</h1>
+   <span class="spacer"></span>
+
+       <mat-form-field >
+           <mat-label>Usuario</mat-label>
+           <mat-select [(ngModel)]="commit.userGithub" required>
+               <mat-option *ngFor="let user of userGithub" [value]="user.value">
+                   {{user.desc}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        
+        <mat-form-field>
+            <mat-label>Repositorio</mat-label>
+            <mat-select [(ngModel)]="commit.repository" required>
+                <mat-option *ngFor="let repo of repository" [value]="repo.value">
+                    {{repo.desc}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        
+        <button mat-raised-button 
+                color="primary"
+                (click)="load()">
+            Listar
+        </button>
+            
+        
+    </div>
+</mat-card>
+
+
+
+
+
