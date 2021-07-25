@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ErrorPageComponent } from './shared/error-page/error-page.component';
+import { ValidateTokenGuard } from './auth/guards/validate-token.guard';
 
 const routes: Routes = [
   {
@@ -10,6 +11,8 @@ const routes: Routes = [
   {
     path: 'commits',
     loadChildren: () => import('./commits/commits.module').then( m => m.CommitsModule),
+    canActivate: [ValidateTokenGuard],
+    canLoad: [ValidateTokenGuard]
   },
   {
     path: '**',

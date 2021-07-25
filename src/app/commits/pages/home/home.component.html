@@ -18,7 +18,7 @@
             </a>
             <a routerLink="./buscar"
                 mat-list-item
-                (click)="sidenav.toggle()">
+                (click)="logout()">
                 <mat-icon mat-list-icon>logout</mat-icon>
                 <span>Logout</span>
             </a>
@@ -31,7 +31,7 @@
             <mat-icon>menu</mat-icon>
         </button>
         <span class="spacer"></span>
-        <!-- <span>{{ auth.usuario }}</span> -->
+        <span>{{ user.name }}</span>
         <button mat-button
                 (click)="logout()">
             Logout
