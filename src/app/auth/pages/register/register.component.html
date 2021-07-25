@@ -2,7 +2,7 @@
     <mat-card >
         
         <mat-card-header>
-            <mat-card-title><h1>Registro</h1></mat-card-title>
+            <mat-card-title><h1>Nuevo Usuario</h1></mat-card-title>
         </mat-card-header>
 
         <mat-divider></mat-divider>
@@ -42,13 +42,13 @@
                     type="submit" 
                     color="primary"
                     [disabled]="myForm.invalid">
-                    Login
+                    Registro
             </button>
         </form>
           
         <mat-card-actions fxLayout="column">
               <p fxLayoutAlign="center">¿Ya tienes una cuenta?</p>
-              <button  mat-stroked-button [routerLink]="['/auth/login']">Crea una aquí</button>
+              <button  mat-stroked-button [routerLink]="['/auth/login']">Ingresa aquí</button>
         </mat-card-actions>
 
     </mat-card>

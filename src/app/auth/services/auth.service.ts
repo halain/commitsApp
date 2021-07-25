@@ -39,5 +39,24 @@ export class AuthService {
       );
   }
 
+  
+
+  login(email: string, password: string) {
+
+    const url = `${this.baseURL}/auth`
+    const body = {email, password};
+
+    return this.http.post<AuthResponse>(url, body)
+      .pipe(
+        tap( resp => {
+            if (resp.ok) {
+              localStorage.setItem('token', resp.token!);
+            }
+        }),
+        map( resp => resp.ok),
+        catchError( err => of(err.error.msg) )
+      );
+  }
+
 
 }
