@@ -9,12 +9,16 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { CommitsRoutingModule } from './commits-routing.module';
 import { HomeComponent } from './pages/home/home.component';
 import { ListComponent } from './pages/list/list.component';
+import { ImagenPipe } from './pipes/imagen.pipe';
+import { CapitalizeFirstPipe } from './pipes/capitalize-first.pipe';
 
 
 @NgModule({
   declarations: [
     HomeComponent,
-    ListComponent
+    ListComponent,
+    ImagenPipe,
+    CapitalizeFirstPipe
   ],
   imports: [
     CommonModule,

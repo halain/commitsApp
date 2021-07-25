@@ -1,6 +1,6 @@
 
 
-<mat-card >
+<mat-card class="mb-5">
 
     <div  fxLayout.xs="column"
         fxLayoutGap="20px">
@@ -35,54 +35,63 @@
     </div>
 </mat-card>
 
+<div class="mat-elevation-z8 data-table">
 
+    <div class="spinner-loading-shade" *ngIf="loading">
+        <mat-spinner [hidden]="!loading"></mat-spinner>
+    </div>
 
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-
-    <!--- Note that these columns can be defined in any order.
-          The actual rendered columns are set as a property on the row definition" -->
-  
-    <!-- Avatar Column -->
-    <ng-container matColumnDef="avatar_url">
-      <th mat-header-cell *matHeaderCellDef> No. </th>
-      <td mat-cell *matCellDef="let c"> {{c.avatar_url}} </td>
-    </ng-container>
-  
-    <!-- Author Column -->
-    <ng-container matColumnDef="author">
-      <th mat-header-cell *matHeaderCellDef> Autor </th>
-      <td mat-cell *matCellDef="let c"> {{c.author}} </td>
-    </ng-container>
-  
-    <!-- Message Column -->
-    <ng-container matColumnDef="message">
-      <th mat-header-cell *matHeaderCellDef> Commit </th>
-      <td mat-cell *matCellDef="let c"> {{c.message}} </td>
-    </ng-container>
-  
-    <!-- Url Column -->
-    <ng-container matColumnDef="html_url">
-      <th mat-header-cell *matHeaderCellDef> URL </th>
-      <td mat-cell *matCellDef="let c"> {{c.html_url}} </td>
-    </ng-container>
+    <table mat-table [dataSource]="dataSource"  *ngIf="!loading">
+        
+        <!-- Avatar Column -->
+        <ng-container matColumnDef="avatar_url">
+            <th mat-header-cell *matHeaderCellDef> </th>
+            <td mat-cell *matCellDef="let c">
+                <img [src]="c | imagen" mat-card-avatar>
+            </td>
+        </ng-container>
     
-    <!-- Date Column -->
-    <ng-container matColumnDef="date">
-      <th mat-header-cell *matHeaderCellDef> Fecha </th>
-      <td mat-cell *matCellDef="let c"> {{c.date}} </td>
-    </ng-container>
+        <!-- Author Column -->
+        <ng-container matColumnDef="author">
+            <th mat-header-cell *matHeaderCellDef> Autor </th>
+            <td mat-cell *matCellDef="let c"> {{c.author}} </td>
+        </ng-container>
     
-    <!-- Email Column -->
-    <ng-container matColumnDef="email">
-      <th mat-header-cell *matHeaderCellDef> Email </th>
-      <td mat-cell *matCellDef="let c"> {{c.email}} </td>
-    </ng-container>
-  
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
-  
-  
+        <!-- Message Column -->
+        <ng-container matColumnDef="message">
+            <th mat-header-cell *matHeaderCellDef> Commit </th>
+            <td mat-cell *matCellDef="let c"> {{c.message | capitalizeFirst }} </td>
+        </ng-container>
+    
+        <!-- Url Column -->
+        <ng-container matColumnDef="html_url">
+            <th mat-header-cell *matHeaderCellDef> URL </th>
+            <td mat-cell *matCellDef="let c">
+                <a [href]="c.html_url" target="_blank" rel="noopener" class="ext-link">
+                    {{c.html_url}}
+                </a>
+            </td>
+        </ng-container>
+    
+        <!-- Date Column -->
+        <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef> Fecha </th>
+            <td mat-cell *matCellDef="let c">
+                {{c.date | date:'MMMM dd, yyyy':'':'es' }}
+            </td>
+        </ng-container>
+    
+        <!-- Email Column -->
+        <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef> Email </th>
+            <td mat-cell *matCellDef="let c"> {{c.email}} </td>
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  <mat-paginator [pageSizeOptions]="[10, 20, 30]" showFirstLastButtons></mat-paginator>
+</div>
 
 
 

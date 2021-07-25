@@ -1,3 +1,42 @@
 table {
+  width: 100%;
+}
+
+// td.mat-cell {
+//   border-bottom-style: none !important;
+// }
+
+// th.mat-header-cell {
+//   border-bottom-style: none !important;
+// }
+
+// .mat-row:hover {
+//     background-color: #b4b4b433;
+// }
+
+
+
+.spinner-loading-shade {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 56px;
+  right: 0;
+  background: rgba(0, 0, 0, 0.15);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ext-link {
+  text-decoration: none;
+}
+
+.data-table {
     width: 100%;
-  }
+    margin: 20px auto;  
+}
+
+
+  
