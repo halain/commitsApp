@@ -1,27 +1,27 @@
 # CommitsApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.3.
+Este proyecto fue realizado con Angular 12 como frontend y un backend con una API en NodeJs y se consume la API de GitHub desde el server. Autenticación con mongoDB
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Instalar dependencias
 
-## Code scaffolding
+Desde la raiz del proyecto una vez descargado `npm i` para instalar dependencias de Angular. Se deben instalar las dependencias de node desde el directorio `server/` y ejecutar `npm i`. 
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Iniciar servidor de NodeJS
 
-## Build
+Desde el directorio `server/` ejecutar `npm start`. Si desea ejecutar el servidor en desarrollo para poder ver logs de consola, `npm run dev` pero para esto debe tener instalado nodemon en forma global `npm i -g nodemon`
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Iniciar aplicación Angular
 
-## Running unit tests
+ Desde la raíz ejecutar `ng serve` para iniciar el servidor de desarrollo de angular. En el navegador abra `http://localhost:4200/`.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
-## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Observaciones
+
+- Se implementó una autenticación con una base de datos en mongoDB para lo que se compartió el archivo .env, este acceso será eliminado en poco tiempo ya que esto es para este caso de demostración, en todo caso se puede cambiar la cadena de conexión por una propia.
+- El login carga por defecto un usuario con acceso `user@test.com` y contraseña `password`, puede jugar con el registro crear nuevos usuario y realizar login con los mismos.
+- La ruta principal para obtener los commits `/commits` fue protegida mediante guards con tokens, solo un usuario autenticado puede acceder a esta ruta. El login se persiste en el localstorage.
+- Se consume la API de GitHub para obtener los commits de este proyecto. Se envian los datos necesarios al servidor del usuario y repositorio que se quieren leer mediante los select de la pantalla, pero el backend esta listo para consumir la data de cualqueir usuario y su repositorio
